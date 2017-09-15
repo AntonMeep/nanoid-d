@@ -12,9 +12,9 @@ import std.range : generate;
  *   rand = Random generator to use. Uses rndGen by default, which isn't a cryptographically strong algorithm!
  * Returns: An InfiniteRange of random characters from alphabet
  */
-@safe auto nanoid(RandomGen)(
+@safe auto nanoid(RandomGen = Random)(
 	in char[] alphabet = "_~0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ".dup,
-	RandomGen rand = rndGen
+	RandomGen rand = rndGen()
 )
 if(isUniformRNG!RandomGen)
 in {
