@@ -1,0 +1,14 @@
+.dub
+docs.json
+__dummy.html
+docs/
+nanoi-d.so
+nanoi-d.dylib
+nanoi-d.dll
+nanoi-d.a
+nanoi-d.lib
+nanoi-d-test-*
+*.exe
+*.o
+*.obj
+*.lst

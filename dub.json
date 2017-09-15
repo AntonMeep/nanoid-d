@@ -1,0 +1,20 @@
+{
+	"name": "nanoi-d",
+	"authors": [
+		"Anton Fediushin"
+	],
+	"description": "A tiny, URL-friendly unique string ID generator for D",
+	"copyright": "Copyright © 2017, Anton Fediushin",
+	"license": "MIT",
+	"configurations": [
+		{
+			"name": "library"
+		},
+		{
+			"name": "unittest",
+			"dependencies": {
+				"fluent-asserts": "~>0.6.6"
+			}
+		}
+	]
+}
