@@ -4,20 +4,27 @@ version(unittest) import fluent.asserts;
 import std.random : rndGen, isUniformRNG, choice, Random;
 import std.range : generate;
 
-template nanoid(RandomGen = Random)
-if(isUniformRNG!RandomGen) {
-	auto nanoid(
-		char[] alphabet = "_~0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ".dup,
-		RandomGen rand = rndGen
-	) in {
-		assert(alphabet.length <= 256, "Maximum length of alphabet is 256");
-	} body {
-		import std.string : representation;
-		import std.conv : to;
+/**
+ * Unique string ID generator
+ * Params:
+ *   alphabet = alphabet to use. Maximum length is 256 characters
+ *
+ *   rand = Random generator to use. Uses rndGen by default, which isn't a cryptographically strong algorithm!
+ * Returns: An InfiniteRange of random characters from alphabet
+ */
+@safe auto nanoid(RandomGen)(
+	in char[] alphabet = "_~0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ".dup,
+	RandomGen rand = rndGen
+)
+if(isUniformRNG!RandomGen)
+in {
+	assert(alphabet.length <= 256, "Maximum length of alphabet is 256");
+} body {
+	import std.string : representation;
+	import std.conv : to;
 
-		auto alph = alphabet.representation;
-		return generate!(() => alph.choice(rand).to!char);
-	}
+	auto alph = alphabet.representation;
+	return generate!(() => alph.choice(rand).to!char);
 }
 
 unittest {
